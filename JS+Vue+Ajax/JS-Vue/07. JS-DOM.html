@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS-DOM</title>
+</head>
+<body>
+
+  <h1 id="title1">11111</h1>
+  <h1>22222</h1>
+  <h1>33333</h1>
+
+  <script>
+    //修改第一个 h1 标签的内容
+    //let h1 = document.querySelector("#title1");
+    //h1.innerHTML = "Hello, JS!";
+
+    let h1s = document.querySelectorAll("h1");
+    h1s[1].innerHTML = "Hello, JS!";
+  </script>
+</body>
+</html>

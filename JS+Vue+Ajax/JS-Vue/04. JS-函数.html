@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS-函数</title>
+</head>
+<body>
+  
+
+  <script>
+    // 具名函数
+    function add(a, b){
+      return a + b;
+    }
+    let sum = add(10, 20);
+    alert(sum);
+    console.log(sum);
+
+    // 匿名函数
+    let sub = function(a, b){
+      return a - b;
+    }
+    let result = sub(20, 10);
+    alert(result);
+
+    // 箭头函数
+    let mul = (a, b) => a * b;
+    let res = mul(10, 20);
+    alert(res);
+  </script>
+</body>
+</html>
