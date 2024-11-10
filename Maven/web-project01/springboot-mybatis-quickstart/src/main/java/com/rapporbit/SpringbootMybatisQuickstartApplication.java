@@ -1,13 +1,13 @@
-package com.rapporbit.springbootweb01;
+package com.rapporbit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootWeb01Application {
+public class SpringbootMybatisQuickstartApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootWeb01Application.class, args);
+        SpringApplication.run(SpringbootMybatisQuickstartApplication.class, args);
     }
 
 }
