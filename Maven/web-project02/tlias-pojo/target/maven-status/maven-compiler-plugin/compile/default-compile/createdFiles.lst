@@ -1,0 +1,15 @@
+com/rapporbit/pojo/Student.class
+com/rapporbit/pojo/Dept.class
+com/rapporbit/pojo/OperateLog.class
+com/rapporbit/pojo/EmpQueryParam.class
+com/rapporbit/pojo/PageResult.class
+com/rapporbit/pojo/EmpLog.class
+com/rapporbit/pojo/JobOption.class
+com/rapporbit/pojo/ClazzOption.class
+com/rapporbit/pojo/Emp.class
+com/rapporbit/pojo/Result.class
+com/rapporbit/pojo/ClazzQueryParam.class
+com/rapporbit/pojo/StudentQueryParam.class
+com/rapporbit/pojo/LoginInfo.class
+com/rapporbit/pojo/EmpExpr.class
+com/rapporbit/pojo/Clazz.class
