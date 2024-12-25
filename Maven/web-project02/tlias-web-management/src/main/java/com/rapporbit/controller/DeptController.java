@@ -1,6 +1,7 @@
 package com.rapporbit.controller;
 
 
+import com.rapporbit.anno.LogOperation;
 import com.rapporbit.pojo.Dept;
 import com.rapporbit.pojo.Result;
 import com.rapporbit.service.DeptService;
@@ -44,6 +45,7 @@ public class DeptController {
 //        }
 
         //方法三：省略@RequestParam注解（前端传递的请求参数名与服务端方法形参名一致）,推荐使用
+        @LogOperation
         @DeleteMapping("/depts")
         public Result delete(Integer id) {
             //System.out.println("删除部门"+ id);
@@ -52,6 +54,7 @@ public class DeptController {
             return Result.success();
         }
 
+        @LogOperation
         @PostMapping("/depts")
         public Result add(@RequestBody Dept dept) {
             //System.out.println("添加部门"+ dept);
@@ -68,6 +71,7 @@ public class DeptController {
             return Result.success(dept);
         }
 
+        @LogOperation
         @PutMapping("/depts")
         public Result update(@RequestBody Dept dept) {
             //System.out.println("更新部门"+ dept);

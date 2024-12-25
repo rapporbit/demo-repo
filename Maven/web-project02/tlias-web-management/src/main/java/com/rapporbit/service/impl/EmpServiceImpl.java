@@ -8,6 +8,7 @@ import com.rapporbit.pojo.*;
 import com.rapporbit.service.EmpLogService;
 import com.rapporbit.service.EmpService;
 
+import com.rapporbit.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,9 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -87,6 +90,58 @@ public class EmpServiceImpl implements EmpService {
 //        //记录日志
 //        EmpLog empLog = new EmpLog(null, LocalDateTime.now(),"新增员工："+ emp);
 //        empLogService.insertLog(empLog);
+    }
+
+    @Transactional
+    @Override
+    public void delete(List<Integer> ids) {
+        //1.删除员工
+        empMapper.deleteByIds(ids);
+        //2.删除员工工作经历
+        empExprMapper.deleteByEmpIds(ids);
+    }
+
+    @Override
+    public Emp getInfo(Integer id) {
+        //1.查询员工信息
+        Emp emp = empMapper.getById(id);
+        return emp;
+    }
+
+    @Override
+    public void update(Emp emp) {
+        //1.更新员工信息
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.updateById(emp);
+        //2.删除员工工作经历
+        empExprMapper.deleteByEmpIds(List.of(emp.getId()));
+        //3.新增员工工作经历
+        List<EmpExpr> exprList = emp.getExprList();
+        if(!CollectionUtils.isEmpty(exprList)){
+            exprList.forEach(empExpr -> empExpr.setEmpId(emp.getId()));
+            empExprMapper.insertBatch(exprList);
+        }
+
+    }
+
+    @Override
+    public List<Emp> list() {
+        List<Emp> list = empMapper.getAll();
+        return list;
+    }
+
+    @Override
+    public LoginInfo login(Emp emp) {
+        LoginInfo loginInfo = empMapper.selectByUserNameAndPassword(emp);
+        if(loginInfo == null){
+            return null;
+        }
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", loginInfo.getId());
+        claims.put("username", loginInfo.getUsername());
+        String token = JwtUtils.generateJwt(claims);
+        loginInfo.setToken(token);
+        return loginInfo;
     }
 
 }

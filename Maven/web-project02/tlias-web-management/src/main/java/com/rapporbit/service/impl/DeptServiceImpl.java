@@ -1,5 +1,6 @@
 package com.rapporbit.service.impl;
 
+import com.rapporbit.exception.DeptHasDeleteException;
 import com.rapporbit.mapper.DeptMapper;
 import com.rapporbit.pojo.Dept;
 import com.rapporbit.service.DeptService;
@@ -22,6 +23,10 @@ public class DeptServiceImpl implements DeptService {
 
     @Override
     public void deleteById(Integer id) {
+        Integer empCount = deptMapper.empCountByDeptId(id);
+        if (empCount > 0) {
+            throw new DeptHasDeleteException();
+        }
         deptMapper.deleteById(id);
     }
 
